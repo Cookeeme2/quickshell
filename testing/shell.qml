@@ -6,7 +6,7 @@ import Quickshell.Services.SystemTray
 import Quickshell.Services.Mpris
 import Quickshell.Services.UPower
 import Qt5Compat.GraphicalEffects
-
+//fuck git
 Scope {
   id:root
   
