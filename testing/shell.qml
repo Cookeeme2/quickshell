@@ -34,11 +34,13 @@ Scope {
           leftMargin: 10
           topMargin: 5
         }
+        //this is a test for github desktop
         Rectangle {
           width: 200
           height:30
           anchors.verticalCenter: parent.verticalCenter
           anchors.right: tray.left
+          radius: 10
           
         }
         StandardBarModule {
