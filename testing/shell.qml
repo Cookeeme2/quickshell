@@ -5,7 +5,9 @@ import QtQuick // for Text
 import Quickshell.Services.SystemTray
 import Quickshell.Services.Mpris
 import Quickshell.Services.UPower
+import Quickshell.Services.Pipewire
 import Qt5Compat.GraphicalEffects
+import QtQuick.Controls
 //fuck git
 Scope {
   id:root
@@ -41,12 +43,15 @@ Scope {
           anchors.verticalCenter: parent.verticalCenter
           anchors.right: tray.left
           radius: 10
+          Text {
+            text: Pipewire.defaultAudioSink.id//.audio.volume
+          }
           
         }
         StandardBarModule {
           anchors.left: cpustat.right
           anchors.leftMargin: 10
-          text: "fuck me"
+          text: "fuck me" + slidertest.value
           width: contWidth +10
         }
 
