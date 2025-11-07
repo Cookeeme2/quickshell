@@ -36,17 +36,51 @@ Scope {
           leftMargin: 10
           topMargin: 5
         }
+        StandardBarModule {
+          focus:true
+          Keys.onPressed: (event)=> {
+            console.log("hi");
+          }
+        }
         //this is a test for github desktop
         Rectangle {
+          color: "#404040"
           width: 200
           height:30
           anchors.verticalCenter: parent.verticalCenter
           anchors.right: tray.left
           radius: 10
-          Text {
-            text: Pipewire.defaultAudioSink.id//.audio.volume
+          PwObjectTracker {
+            objects: [ Pipewire.defaultAudioSink ]
           }
-          
+          Slider {
+            id:control
+            anchors.fill:parent
+            value: Pipewire.defaultAudioSink.audio.volume
+            handle: Rectangle {
+              x: control.visualPosition * control.availableWidth//control.leftPadding + control.visualPosition * (control.availableWidth - width)
+              y: control.topPadding + control.availableHeight / 2 - height / 2
+              implicitWidth: 16
+              implicitHeight: 16
+              radius: 5
+              color: control.pressed ? "#f0f0f0" : "#f6f6f6"
+              border.color: "#bdbebf"
+            }
+            onMoved: {
+              console.log("moved")
+              Pipewire.defaultAudioSink.audio.volume = this.value
+            }
+          }
+          // Row{
+          //   spacing: 10
+          //   Text {
+          //     text: Pipewire.preferredDefaultAudioSink.id//.audio.volume
+          //   }
+          //   Text {
+              
+          //     text: Pipewire.defaultAudioSink?.audio.volume ?? 0
+          //   }
+          // }
         }
         StandardBarModule {
           anchors.left: cpustat.right
