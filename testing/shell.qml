@@ -11,7 +11,7 @@ import QtQuick.Controls
 //fuck git
 Scope {
   id:root
-  
+  //hello
   Variants {
     model: Quickshell.screens
 
