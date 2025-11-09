@@ -18,6 +18,7 @@ Scope {
     PanelWindow{
       required property var modelData
       id: taskbar
+      screen: modelData
       anchors{
         top: true
         left:true
