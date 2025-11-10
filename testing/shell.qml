@@ -36,12 +36,7 @@ Scope {
           leftMargin: 10
           topMargin: 5
         }
-        StandardBarModule {
-          focus:true
-          Keys.onPressed: (event)=> {
-            console.log("hi");
-          }
-        }
+        
         //this is a test for github desktop
         Rectangle {
           color: "#404040"
@@ -85,7 +80,7 @@ Scope {
         StandardBarModule {
           anchors.left: cpustat.right
           anchors.leftMargin: 10
-          text: "fuck me" + slidertest.value
+          text: "fuck me" + Pipewire.defaultAudioSink.nickname
           width: contWidth +10
         }
 
