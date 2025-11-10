@@ -11,13 +11,14 @@ import QtQuick.Controls
 //fuck git
 Scope {
   id:root
-  
+  //hello
   Variants {
     model: Quickshell.screens
 
     PanelWindow{
       required property var modelData
       id: taskbar
+      screen: modelData
       anchors{
         top: true
         left:true
