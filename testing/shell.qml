@@ -8,18 +8,16 @@ import Quickshell.Services.UPower
 import Quickshell.Services.Pipewire
 import Qt5Compat.GraphicalEffects
 import QtQuick.Controls
-//fuck git
 Scope {
   id:root
-  //hello
   Variants {
     model: Quickshell.screens
 
-    PanelWindow{
+    PanelWindow {
       required property var modelData
       id: taskbar
       screen: modelData
-      anchors{
+      anchors {
         top: true
         left:true
         right:true
@@ -77,12 +75,6 @@ Scope {
           //     text: Pipewire.defaultAudioSink?.audio.volume ?? 0
           //   }
           // }
-        }
-        StandardBarModule {
-          anchors.left: cpustat.right
-          anchors.leftMargin: 10
-          text: "fuck me" + Pipewire.defaultAudioSink.nickname
-          width: contWidth +10
         }
 
         //Battery
