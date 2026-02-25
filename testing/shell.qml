@@ -28,7 +28,7 @@ Scope {
         id:base
         anchors.fill: parent
         color:'#48000000'
-        radius: 10
+        radius: 12
         anchors{
           fill: parent
           rightMargin: 10
@@ -39,30 +39,89 @@ Scope {
         //this is a test for github desktop
         Rectangle {
           color: "#404040"
-          width: 200
+          width: 300
           height:30
           anchors.verticalCenter: parent.verticalCenter
           anchors.right: tray.left
           radius: 10
+          id: fuckTangle
           PwObjectTracker {
             objects: [ Pipewire.defaultAudioSink ]
           }
-          Slider {
-            id:control
-            anchors.fill:parent
-            value: Pipewire.defaultAudioSink.audio.volume
-            handle: Rectangle {
-              x: control.visualPosition * control.availableWidth//control.leftPadding + control.visualPosition * (control.availableWidth - width)
-              y: control.topPadding + control.availableHeight / 2 - height / 2
-              implicitWidth: 16
-              implicitHeight: 16
-              radius: 5
-              color: control.pressed ? "#f0f0f0" : "#f6f6f6"
-              border.color: "#bdbebf"
+          Behavior on width {
+            NumberAnimation {   
+              duration:500
             }
-            onMoved: {
-              console.log("moved")
-              Pipewire.defaultAudioSink.audio.volume = this.value
+          }
+          Row {
+            anchors.fill: parent
+            spacing: 5
+            Item {
+              width: volumeText.contentWidth
+              height: 20
+              anchors.centerIn: fuckTangle.verticalCenter
+              Text {
+                id: volumeText
+                anchors.fill:parent
+                text: Pipewire.defaultAudioSink.audio.volume
+              }
+            }
+            Slider {
+              id:control
+              width: 180
+              height : 20
+              // nchors {
+              //   left: percentText.right
+              //   right: parent.right
+              //   bottom: parent.bottom
+              //   top: parent.top
+              // }a
+              // anchors{
+              //   fill: parent
+              //   leftMargin: 5
+              //   rightMargin: 5
+              // }
+              hoverEnabled: true
+              value: Pipewire.defaultAudioSink.audio.volume
+
+              handle: Rectangle {
+                x: control.leftPadding + control.visualPosition * (control.availableWidth - width)
+                y: control.topPadding + control.availableHeight / 2 - height / 2
+                implicitWidth: 16
+                implicitHeight: 16
+                radius: 5
+                
+                color: control.pressed ? "#B94141" : "#404040"
+                border{
+                  color: handleHover.hovered ? "#B94141" : "#f0f0f0"
+                  width: 2
+                }
+
+                HoverHandler {
+                  enabled: true
+                  id: handleHover
+                }
+                // MouseArea {
+                //   anchors.fill:parent
+                //   id: handleMouse
+                //   hoverEnabled: true
+                //   onClicked: control.pressed = true
+                // }
+                Behavior on color {
+                  ColorAnimation {
+                    duration: 150
+                  }
+                }
+                Behavior on border.color {
+                  ColorAnimation {
+                    duration: 150
+                  }
+                }
+              }
+              onMoved: {
+                console.log("moved")
+                Pipewire.defaultAudioSink.audio.volume = this.value
+              }
             }
           }
           // Row{
