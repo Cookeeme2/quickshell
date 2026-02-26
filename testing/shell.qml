@@ -39,11 +39,15 @@ Scope {
         //this is a test for github desktop
         Rectangle {
           color: "#404040"
-          width: 300
+          width: volumeText.contentWidth + control.width +20
           height:30
           anchors.verticalCenter: parent.verticalCenter
           anchors.right: tray.left
           radius: 10
+          anchors {
+            leftMargin: 10
+            rightMargin:10
+          }
           id: fuckTangle
           PwObjectTracker {
             objects: [ Pipewire.defaultAudioSink ]
@@ -54,22 +58,33 @@ Scope {
             }
           }
           Row {
-            anchors.fill: parent
-            spacing: 5
+            id: volumeRow
+            anchors.centerIn: parent
+            spacing: 10
             Item {
               width: volumeText.contentWidth
               height: 20
+              anchors.verticalCenter: parent.verticalCenter
               anchors.centerIn: fuckTangle.verticalCenter
               Text {
                 id: volumeText
                 anchors.fill:parent
-                text: Pipewire.defaultAudioSink.audio.volume
+                text: Math.round(Pipewire.defaultAudioSink.audio.volume*100) + "%"
+                anchors.centerIn: parent
+                color: "white"
+                font.pointSize: 12
+                font.family: "JetBrainsMono Nerd Font"
+                font.styleName: "SemiBold Italic"
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
               }
             }
             Slider {
+              anchors.verticalCenter: parent.verticalCenter
               id:control
               width: 180
               height : 20
+              
               // nchors {
               //   left: percentText.right
               //   right: parent.right
