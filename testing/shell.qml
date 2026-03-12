@@ -8,6 +8,8 @@ import Quickshell.Services.UPower
 import Quickshell.Services.Pipewire
 import Qt5Compat.GraphicalEffects
 import QtQuick.Controls
+import "PowerMenu"
+
 Scope {
   id:root
   Variants {
@@ -35,7 +37,88 @@ Scope {
           leftMargin: 10
           topMargin: 5
         }
+        //Power menu
         
+        PowerMenu {
+          id: powerMenu
+        }
+        // Rectangle {
+        //   id: powerMenu
+        //   color: "#404040"
+        //   width: 10 + powerRow.width
+        //   height:30
+        //   anchors.verticalCenter: parent.verticalCenter
+        //   anchors.right: parent.right
+
+        //   radius: 10
+        //   anchors {
+        //     leftMargin: 10
+        //     rightMargin:10  
+        //   }
+        //   Row {
+        //     id:powerRow
+        //     anchors.centerIn: parent
+        //     spacing: 2
+        //     Repeater{
+        //       anchors.fill: parent
+        //       ListModel {
+        //         id: powerModel
+        //         ListElement {
+        //           icon: "󰤆"
+        //           exec: "systemctl poweroff"
+        //         }
+        //         ListElement {
+        //           icon: "󰤄"
+        //           exec: "systemctl sleep"
+        //         }
+        //         ListElement {
+        //           icon: ""
+        //           exec: "systemctl reboot"
+        //         }
+        //       }
+        //       model: ["󰤆", "󰤄", ""]
+        //       Rectangle {
+        //         radius: 8
+        //         required property string modelData
+        //         height:22
+        //         width:22
+        //         color: powerMouse.containsMouse ? "#B94141" : "#404040"
+        //         border{
+        //           width: powerMouse.containsPress ? 2 : 0
+        //           color: '#e3e3e3'
+        //         }
+        //         Behavior on color {
+        //           ColorAnimation {
+        //             duration: 150
+        //           }
+        //         }
+        //         Behavior on border.width {
+        //           NumberAnimation {
+        //             duration: 50
+        //           }
+        //         }
+                
+        //         MouseArea {
+        //           anchors.fill:parent
+        //           id:powerMouse
+        //           hoverEnabled: true
+        //         }
+        //         Item {
+        //           x:3.5
+        //           y:-1
+        //           Text {
+                  
+        //             anchors.centerIn: parent
+        //             color: "white"
+        //             font.pointSize: 14
+        //             anchors.fill:parent
+        //             text: modelData
+        //           }
+        //         }
+        //       }
+        //     }
+        //   }
+        // }
         //this is a test for github desktop
         Rectangle {
           color: "#404040"
@@ -212,7 +295,7 @@ Scope {
         Rectangle {
           radius: 12
           id: tray
-          anchors.right: parent.right
+          anchors.right: powerMenu.left
           anchors.rightMargin: 2
           anchors.verticalCenter: parent.verticalCenter
           
